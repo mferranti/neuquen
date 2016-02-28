@@ -29,3 +29,18 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| API routes
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
+{
+    Route::group(['prefix' => 'v1'], function ()
+    {
+        require config('infyom.laravel_generator.path.api_routes');
+    });
+});
