@@ -4,6 +4,13 @@
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
+<!--- Price Field --->
+<div class="form-group col-sm-6">
+    {!! Form::label('price', 'Price:') !!}
+    {!! Form::number('price', null, ['class' => 'form-control', 'step' => 'any']) !!}
+</div>
+
+
 <!--- Quantity Field --->
 <div class="form-group col-sm-6">
     {!! Form::label('quantity', 'Quantity:') !!}
