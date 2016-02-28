@@ -57,7 +57,12 @@ Route::group(['middleware' => 'web'], function () {
       'as' => 'modules.delete',
       'uses' => 'ModuleController@destroy',
     ]);
+
+    Route::resource("clients", "ClientController");
+
+    Route::get('clients/delete/{id}', [
+      'as' => 'clients.delete',
+      'uses' => 'ClientController@destroy',
+    ]);
 });
-
-
 
