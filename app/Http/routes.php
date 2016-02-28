@@ -17,22 +17,6 @@ Route::get('/', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
-
-/*
-|--------------------------------------------------------------------------
 | API routes
 |--------------------------------------------------------------------------
 */
@@ -43,4 +27,29 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
     {
         require config('infyom.laravel_generator.path.api_routes');
     });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| This route group applies the "web" middleware group to every route
+| it contains. The "web" middleware group is defined in your HTTP
+| kernel and includes session state, CSRF protection, and more.
+|
+*/
+
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+    Route::get('/home', 'HomeController@index');
+    Route::resource("products", "ProductController");
+
+    Route::get('products/delete/{id}', [
+      'as' => 'products.delete',
+      'uses' => 'ProductController@destroy',
+    ]);
+
+
 });
